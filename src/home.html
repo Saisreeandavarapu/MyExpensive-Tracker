@@ -14,7 +14,7 @@
     <h1 class="text-2xl md:text-4xl text-white tracking-wider leading-tight">
         Expense <br class="hidden md:block">Tracker
     </h1>
-    <img src="/src/assests/image.png" class="w-8 h-8 md:w-10 md:h-10 mt-10"></div>
+    <img src="/public/image.png" class="w-8 h-8 md:w-10 md:h-10 mt-10"></div>
 
     <h1  class="text-white text-4xl tracking wider">Hi. <span id="displayName"></span></h1>
 </header>
@@ -52,7 +52,7 @@
         <div class="h-32 bg-blue-500 rounded-md text-center">
             <div class="flex justify-center items-center gap-2">
                 <h1 class="text-white text-2xl md:text-3xl tracking-wide pt-4">Total Income</h1>
-                <img src="/src/assests/image copy 3.png" class="w-8 h-8 md:w-10 md:h-10 mt-4">
+                <img src="/public/image copy 2.png" class="w-8 h-8 md:w-10 md:h-10 mt-4">
             </div>
             <h1 class="text-white text-3xl md:text-4xl tracking-wide">
                 $ <span id="income-value">0</span>
@@ -62,7 +62,7 @@
         <div class="h-32 bg-blue-500 rounded-md text-center">
             <div class="flex justify-center items-center gap-2">
                 <h1 class="text-white text-2xl md:text-3xl tracking-wide pt-4">Total Expense</h1>
-                <img src="/src/assests/image copy 3.png" class="w-8 h-8 md:w-10 md:h-10 mt-4">
+                <img src="/public/image copy 2.png" class="w-8 h-8 md:w-10 md:h-10 mt-4">
             </div>
             <h1 class="text-white text-3xl md:text-4xl tracking-wide">
                 $ <span id="expense-value">0</span>
@@ -72,7 +72,7 @@
         <div class="h-32 bg-blue-500 rounded-md text-center">
             <div class="flex justify-center items-center gap-2">
                 <h1 class="text-white text-2xl md:text-3xl tracking-wide pt-4">Balance</h1>
-                <img src="/src/assests/image copy 3.png" class="w-8 h-8 md:w-10 md:h-10 mt-4">
+                <img src="/public/image copy 2.png" class="w-8 h-8 md:w-10 md:h-10 mt-4">
             </div>
             <h1 class="text-white text-3xl md:text-4xl tracking-wide">
                 $ <span id="balance-value">0</span>
@@ -161,7 +161,7 @@ window.onload=function(){
         let bincell=document.createElement("td");
 
         let binImage=document.createElement("img");
-        binImage.src="/src/assests/image copy 2.png";
+        binImage.src="/public/image copy 3.png";
         binImage.classList.add("w-10","h-10");
         binImage.onclick=()=>deleteRow(row,index);
 
@@ -221,7 +221,7 @@ function addRow()
     let bincell=document.createElement("td");
     
     let binImage=document.createElement("img");
-    binImage.src="/src/assests/image copy 2.png";
+    binImage.src="/public/image copy 3.png";
     binImage.classList.add("w-10","h-10");
 
     let index=Transactions.length-1;
