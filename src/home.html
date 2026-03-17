@@ -9,11 +9,14 @@
 
 <body class="bg-gray-50">
 
-<header class="w-full h-24 bg-blue-500 flex items-center  px-6 md:px-10">
+<header class="w-full h-24 bg-blue-500 flex items-center justify-between  px-6 md:px-10">
+    <div class="flex items-center">
     <h1 class="text-2xl md:text-4xl text-white tracking-wider leading-tight">
         Expense <br class="hidden md:block">Tracker
     </h1>
-    <img src="/src/assests/image.png" class="w-8 h-8 md:w-10 md:h-10 mt-10">
+    <img src="/src/assests/image.png" class="w-8 h-8 md:w-10 md:h-10 mt-10"></div>
+
+    <h1  class="text-white text-4xl tracking wider">Hi. <span id="displayName"></span></h1>
 </header>
 
 
@@ -22,17 +25,20 @@
 
         <input type="text" placeholder="Amount"
         id="input-amount"
-        class="border-2 h-12 md:h-14 px-5 rounded-md text-lg md:text-xl w-full md:w-auto">
+        class="border-2 h-12 md:h-14 px-5 rounded-md text-lg md:text-xl w-full md:w-auto" >
 
-        <input type="text" placeholder="Transaction"
-        id="input-trans"
-        class="border-2 h-12 md:h-14 px-5 rounded-md text-lg md:text-xl w-full md:w-auto">
+        <select name="" id="transactiontype" class="border-2 h-12 md:h-14 px-5 rounded-md text-lg md:text-xl w-full md:w-auto text-gray-400" >
+            <option value="Type"  selected>Transaction Type</option>
+            <option value="Income">Income</option>
+            <option value="Expense">Expense </option>
+        </select>
+        
 
         <input type="date"
         id="input-date"
-        class="border-2 h-12 md:h-14 px-5 rounded-md w-full md:w-auto">
+        class="border-2 h-12 md:h-14 px-5 rounded-md w-full md:w-auto text-gray-500" >
 
-        <button class="w-10 h-10 bg-blue-500 rounded-full text-white font-bold text-xl pb-1">
+        <button class="w-10 h-10 bg-blue-500 rounded-full text-white font-bold text-xl pb-1" onclick="addRow()">
             +
         </button>
 
@@ -49,7 +55,7 @@
                 <img src="/src/assests/image copy 3.png" class="w-8 h-8 md:w-10 md:h-10 mt-4">
             </div>
             <h1 class="text-white text-3xl md:text-4xl tracking-wide">
-                $ <span id="income-value">200</span>
+                $ <span id="income-value">0</span>
             </h1>
         </div>
 
@@ -59,7 +65,7 @@
                 <img src="/src/assests/image copy 3.png" class="w-8 h-8 md:w-10 md:h-10 mt-4">
             </div>
             <h1 class="text-white text-3xl md:text-4xl tracking-wide">
-                $ <span id="expense-value">200</span>
+                $ <span id="expense-value">0</span>
             </h1>
         </div>
 
@@ -69,7 +75,7 @@
                 <img src="/src/assests/image copy 3.png" class="w-8 h-8 md:w-10 md:h-10 mt-4">
             </div>
             <h1 class="text-white text-3xl md:text-4xl tracking-wide">
-                $ <span class="balance-value">200</span>
+                $ <span id="balance-value">0</span>
             </h1>
         </div>
 
@@ -80,7 +86,7 @@
 <section class="max-w-6xl mx-auto mt-10 px-4">
     <div class="overflow-x-auto">
 
-        <table class="w-full border-collapse">
+        <table class="w-full border-collapse" id="tabledata">
 
             <thead>
                 <tr class="bg-blue-500 h-14 text-white text-lg md:text-xl tracking-wide">
@@ -91,7 +97,7 @@
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody id="tablebody">
                
             </tbody>
 
@@ -99,6 +105,183 @@
 
     </div>
 </section>
+<script>
+    let name=localStorage.getItem("userName");
+    document.getElementById("displayName").innerHTML=name;
+let table=document.getElementById("tablebody");
+let Transactions=JSON.parse(localStorage.getItem("Transactions"))||[];
 
+function saveToLocalStorage(){
+    localStorage.setItem("Transactions",JSON.stringify(Transactions));
+}
+
+function deleteRow(row,index){
+    row.remove();
+    Transactions.splice(index,1);
+    saveToLocalStorage();
+}
+/* “Run this code after the HTML page, images, CSS, and scripts are fully loaded.”
+
+So the browser first loads the entire page, then executes the code inside onload.
+
+If you don't use it:
+
+Page refresh → table becomes empty
+
+Even though data exists in LocalStorage
+
+Because the browser does not automatically display stored data.
+
+You must manually load it using JavaScript.
+*/
+
+window.onload=function(){
+
+    Transactions.forEach(function(item,index){
+
+        let row=document.createElement("tr");
+        row.classList.add(
+        "h-14",
+        "text-blue-500",
+        "text-lg",
+        "md:text-xl",
+        "tracking-wide",
+        "text-center",
+        );
+
+        let amountcell=document.createElement("td");
+        amountcell.innerHTML=item.amount;
+
+        let transactioncell=document.createElement("td");
+        transactioncell.innerHTML=item.Transaction;
+
+        let transactiondatecell=document.createElement("td");
+        transactiondatecell.innerHTML=item.date;
+
+        let bincell=document.createElement("td");
+
+        let binImage=document.createElement("img");
+        binImage.src="/src/assests/image copy 2.png";
+        binImage.classList.add("w-10","h-10");
+        binImage.onclick=()=>deleteRow(row,index);
+
+        bincell.appendChild(binImage);
+
+        row.appendChild(amountcell);
+        row.appendChild(transactioncell);
+        row.appendChild(transactiondatecell);
+        row.appendChild(bincell);
+
+        table.appendChild(row);
+    })
+
+}
+
+function addRow()
+{
+    
+    let date=document.getElementById("input-date").value;
+    let amount=document.getElementById("input-amount").value;
+    let Transaction=document.getElementById("transactiontype").value;
+   
+    if(date == "" || amount == "" || Transaction == "Type")
+    {
+        alert("Please Enter the data");
+        return;
+    }
+
+    let data={
+        amount:amount,
+        date:date,
+        Transaction:Transaction
+    };
+
+    Transactions.push(data);
+    saveToLocalStorage();
+
+    let row=document.createElement("tr");
+    row.classList.add(
+"h-14",
+"text-blue-500",
+"text-lg",
+"md:text-xl",
+"tracking-wide",
+"text-center",
+);
+
+    let amountcell=document.createElement("td");
+    amountcell.innerHTML=amount;
+
+    let transactioncell=document.createElement("td");
+    transactioncell.innerHTML=Transaction;
+
+    let transactiondatecell=document.createElement("td");
+    transactiondatecell.innerHTML=date;
+
+    let bincell=document.createElement("td");
+    
+    let binImage=document.createElement("img");
+    binImage.src="/src/assests/image copy 2.png";
+    binImage.classList.add("w-10","h-10");
+
+    let index=Transactions.length-1;
+    binImage.onclick=()=>deleteRow(row,index);
+
+    bincell.appendChild(binImage);
+
+    row.appendChild(amountcell);
+    row.appendChild(transactioncell);
+    row.appendChild(transactiondatecell);
+    row.appendChild(bincell);
+
+    table.appendChild(row);
+    
+    let totalIncome=document.getElementById("income-value").innerText;
+    let totalExpense=document.getElementById("expense-value").innerText;
+    let balanceAmount=document.getElementById("balance-value").innerText;
+
+    if(Transaction == "Income")
+    {
+       if(totalIncome == "0")
+       {
+        document.getElementById("income-value").innerHTML=amount;
+       }
+       else
+       {
+        document.getElementById("income-value").innerHTML=parseInt(totalIncome)+parseInt(amount);
+       }
+       
+       if(balanceAmount == "0")
+       {
+        document.getElementById("balance-value").innerHTML=amount;
+       }
+       else{
+        document.getElementById("balance-value").innerHTML=parseInt(balanceAmount)+parseInt(amount);
+       }
+       
+    }
+    else 
+    {
+      if(totalExpense == "0")
+      {
+        document.getElementById("expense-value").innerHTML=amount;
+      }
+      else{
+        document.getElementById("expense-value").innerHTML=parseInt(totalExpense)+parseInt(amount);
+      }
+
+      if(balanceAmount == "0")
+       {
+        document.getElementById("balance-value").innerHTML=amount;
+       }
+       else{
+        document.getElementById("balance-value").innerHTML=parseInt(balanceAmount)-parseInt(amount);
+       }
+       
+    }
+}
+
+
+</script>
 </body>
 </html>
