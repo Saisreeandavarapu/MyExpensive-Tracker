@@ -7,163 +7,143 @@
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-50">
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
 
-<header class="w-full h-24 bg-blue-500 flex items-center justify-between  px-6 md:px-10">
-    <div class="flex items-center">
-    <h1 class="text-2xl md:text-4xl text-white tracking-wider leading-tight">
-        Expense <br class="hidden md:block">Tracker
+<!-- Header -->
+<header class="w-full h-24 bg-gradient-to-r from-purple-600 to-blue-500 flex items-center justify-between px-6 md:px-10 shadow-lg">
+    
+    <div class="flex items-center gap-2">
+        <h1 class="text-2xl md:text-4xl tracking-wider leading-tight font-bold">
+            Expense <br class="hidden md:block">Tracker
+        </h1>
+        <img src="/src/assests/images/image.png" class="w-8 h-8 md:w-10 md:h-10 mt-6">
+    </div>
+
+    <h1 class="text-white text-2xl md:text-3xl">
+        Hi, <span id="displayName" class="text-cyan-300"></span>
     </h1>
-    <img src="/src/assests/images/image.png" class="w-8 h-8 md:w-10 md:h-10 mt-10"></div>
-
-    <h1  class="text-white text-4xl tracking wider">Hi. <span id="displayName"></span></h1>
 </header>
 
+<!-- Input Section -->
+<section class="max-w-6xl mx-auto mt-10 rounded-xl p-6 bg-gray-900/70 backdrop-blur-md border border-gray-700 shadow-xl">
 
-<section class="max-w-6xl mx-auto border mt-10 rounded-md p-6">
     <div class="flex flex-col md:flex-row gap-5 md:gap-10 items-center justify-center">
 
         <input type="text" placeholder="Amount"
         id="input-amount"
-        class="border-2 h-12 md:h-14 px-5 rounded-md text-lg md:text-xl w-full md:w-auto" >
+        class="bg-gray-800 border border-gray-700 h-12 md:h-14 px-5 rounded-lg text-lg w-full md:w-auto focus:ring-2 focus:ring-cyan-400 outline-none">
 
-        <select name="" id="transactiontype" class="border-2 h-12 md:h-14 px-5 rounded-md text-lg md:text-xl w-full md:w-auto text-gray-400" >
-            <option value="Type"  selected>Transaction Type</option>
+        <select id="transactiontype"
+        class="bg-gray-800 border border-gray-700 h-12 md:h-14 px-5 rounded-lg text-lg w-full md:w-auto text-gray-300 focus:ring-2 focus:ring-cyan-400 outline-none">
+            <option value="Type" selected>Transaction Type</option>
             <option value="Income">Income</option>
-            <option value="Expense">Expense </option>
+            <option value="Expense">Expense</option>
         </select>
-        
 
         <input type="date"
         id="input-date"
-        class="border-2 h-12 md:h-14 px-5 rounded-md w-full md:w-auto text-gray-500" >
+        class="bg-gray-800 border border-gray-700 h-12 md:h-14 px-5 rounded-lg w-full md:w-auto text-gray-300 focus:ring-2 focus:ring-cyan-400 outline-none">
 
-        <button class="w-10 h-10 bg-blue-500 rounded-full text-white font-bold text-xl pb-1" onclick="addRow()">
+        <button class="w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full text-black font-bold text-xl hover:scale-110 transition"
+        onclick="addRow()">
             +
         </button>
 
     </div>
 </section>
 
-
+<!-- Cards Section -->
 <section class="max-w-6xl mx-auto mt-10 px-4">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <div class="h-32 bg-blue-500 rounded-md text-center">
-            <div class="flex justify-center items-center gap-2">
-                <h1 class="text-white text-2xl md:text-3xl tracking-wide pt-4">Total Income</h1>
-                <img src="/src/assests/images/image copy 2.png" class="w-8 h-8 md:w-10 md:h-10 mt-4">
-            </div>
-            <h1 class="text-white text-3xl md:text-4xl tracking-wide">
-                $ <span id="income-value">0</span>
-            </h1>
+        <div class="h-32 bg-gradient-to-r from-green-400 to-emerald-600 rounded-xl text-center shadow-lg">
+            <h1 class="text-white text-2xl pt-4">Total Income</h1>
+            <h1 class="text-white text-3xl">$ <span id="income-value">0</span></h1>
         </div>
 
-        <div class="h-32 bg-blue-500 rounded-md text-center">
-            <div class="flex justify-center items-center gap-2">
-                <h1 class="text-white text-2xl md:text-3xl tracking-wide pt-4">Total Expense</h1>
-                <img src="/src/assests/images/image copy 2.png" class="w-8 h-8 md:w-10 md:h-10 mt-4">
-            </div>
-            <h1 class="text-white text-3xl md:text-4xl tracking-wide">
-                $ <span id="expense-value">0</span>
-            </h1>
+        <div class="h-32 bg-gradient-to-r from-red-400 to-pink-600 rounded-xl text-center shadow-lg">
+            <h1 class="text-white text-2xl pt-4">Total Expense</h1>
+            <h1 class="text-white text-3xl">$ <span id="expense-value">0</span></h1>
         </div>
 
-        <div class="h-32 bg-blue-500 rounded-md text-center">
-            <div class="flex justify-center items-center gap-2">
-                <h1 class="text-white text-2xl md:text-3xl tracking-wide pt-4">Balance</h1>
-                <img src="/src/assests/images/image copy 2.png" class="w-8 h-8 md:w-10 md:h-10 mt-4">
-            </div>
-            <h1 class="text-white text-3xl md:text-4xl tracking-wide">
-                $ <span id="balance-value">0</span>
-            </h1>
+        <div class="h-32 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-xl text-center shadow-lg">
+            <h1 class="text-white text-2xl pt-4">Balance</h1>
+            <h1 class="text-white text-3xl">$ <span id="balance-value">0</span></h1>
         </div>
 
     </div>
 </section>
 
-
+<!-- Table Section -->
 <section class="max-w-6xl mx-auto mt-10 px-4">
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto rounded-xl border border-gray-700">
 
         <table class="w-full border-collapse" id="tabledata">
 
             <thead>
-                <tr class="bg-blue-500 h-14 text-white text-lg md:text-xl tracking-wide">
-                    <th class="px-4">Amount</th>
+                <tr class="bg-gradient-to-r from-purple-600 to-blue-500 text-white text-lg">
+                    <th class="px-4 py-3">Amount</th>
                     <th class="px-4">Transaction Type</th>
                     <th class="px-4">Transaction Date</th>
                     <th class="px-4">Action</th>
                 </tr>
             </thead>
 
-            <tbody id="tablebody">
-               
+            <tbody id="tablebody" class="text-gray-300 text-center">
             </tbody>
 
         </table>
 
     </div>
 </section>
-<script>
-    let name=localStorage.getItem("userName");
-    document.getElementById("displayName").innerHTML=name;
-let table=document.getElementById("tablebody");
-let Transactions=JSON.parse(localStorage.getItem("Transactions"))||[];
 
-function saveToLocalStorage(){
-    localStorage.setItem("Transactions",JSON.stringify(Transactions));
+<!-- Script -->
+<script>
+let name = localStorage.getItem("userName");
+document.getElementById("displayName").innerHTML = name;
+
+let table = document.getElementById("tablebody");
+let Transactions = JSON.parse(localStorage.getItem("Transactions")) || [];
+
+function saveToLocalStorage() {
+    localStorage.setItem("Transactions", JSON.stringify(Transactions));
 }
 
-function deleteRow(row,index){
+function deleteRow(row, index) {
     row.remove();
-    Transactions.splice(index,1);
+    Transactions.splice(index, 1);
     saveToLocalStorage();
 }
-/* “Run this code after the HTML page, images, CSS, and scripts are fully loaded.”
 
-So the browser first loads the entire page, then executes the code inside onload.
+window.onload = function() {
+    // Load saved totals
+    let savedIncome = localStorage.getItem("income");
+    let savedExpense = localStorage.getItem("expense");
+    let savedBalance = localStorage.getItem("balance");
 
-If you don't use it:
+    if (savedIncome) document.getElementById("income-value").innerHTML = savedIncome;
+    if (savedExpense) document.getElementById("expense-value").innerHTML = savedExpense;
+    if (savedBalance) document.getElementById("balance-value").innerHTML = savedBalance;
 
-Page refresh → table becomes empty
+    // Load saved transactions
+    Transactions.forEach(function(item, index) {
+        let row = document.createElement("tr");
+        row.classList.add("h-14","text-gray-300","text-lg","text-center");
 
-Even though data exists in LocalStorage
+        let amountcell = document.createElement("td");
+        amountcell.innerHTML = item.amount;
 
-Because the browser does not automatically display stored data.
+        let transactioncell = document.createElement("td");
+        transactioncell.innerHTML = item.Transaction;
 
-You must manually load it using JavaScript.
-*/
+        let transactiondatecell = document.createElement("td");
+        transactiondatecell.innerHTML = item.date;
 
-window.onload=function(){
-
-    Transactions.forEach(function(item,index){
-
-        let row=document.createElement("tr");
-        row.classList.add(
-        "h-14",
-        "text-blue-500",
-        "text-lg",
-        "md:text-xl",
-        "tracking-wide",
-        "text-center",
-        );
-
-        let amountcell=document.createElement("td");
-        amountcell.innerHTML=item.amount;
-
-        let transactioncell=document.createElement("td");
-        transactioncell.innerHTML=item.Transaction;
-
-        let transactiondatecell=document.createElement("td");
-        transactiondatecell.innerHTML=item.date;
-
-        let bincell=document.createElement("td");
-
-        let binImage=document.createElement("img");
-        binImage.src="/src/assests/images/image copy 3.png";
-        binImage.classList.add("w-10","h-10");
-        binImage.onclick=()=>deleteRow(row,index);
+        let bincell = document.createElement("td");
+        let binImage = document.createElement("img");
+        binImage.src = "/src/assests/images/image copy 3.png";
+        binImage.classList.add("w-8","h-8","mx-auto","cursor-pointer");
+        binImage.onclick = () => deleteRow(row, index);
 
         bincell.appendChild(binImage);
 
@@ -174,58 +154,45 @@ window.onload=function(){
 
         table.appendChild(row);
     })
-
 }
 
-function addRow()
-{
-    
-    let date=document.getElementById("input-date").value;
-    let amount=document.getElementById("input-amount").value;
-    let Transaction=document.getElementById("transactiontype").value;
-   
-    if(date == "" || amount == "" || Transaction == "Type")
-    {
+function addRow() {
+    // Save totals before adding new row
+    localStorage.setItem("income", document.getElementById("income-value").innerText);
+    localStorage.setItem("expense", document.getElementById("expense-value").innerText);
+    localStorage.setItem("balance", document.getElementById("balance-value").innerText);
+
+    let date = document.getElementById("input-date").value;
+    let amount = document.getElementById("input-amount").value;
+    let Transaction = document.getElementById("transactiontype").value;
+
+    if (date == "" || amount == "" || Transaction == "Type") {
         alert("Please Enter the data");
         return;
     }
 
-    let data={
-        amount:amount,
-        date:date,
-        Transaction:Transaction
-    };
-
+    let data = { amount: amount, date: date, Transaction: Transaction };
     Transactions.push(data);
     saveToLocalStorage();
 
-    let row=document.createElement("tr");
-    row.classList.add(
-"h-14",
-"text-blue-500",
-"text-lg",
-"md:text-xl",
-"tracking-wide",
-"text-center",
-);
+    let row = document.createElement("tr");
+    row.classList.add("h-14","text-gray-300","text-lg","text-center");
 
-    let amountcell=document.createElement("td");
-    amountcell.innerHTML=amount;
+    let amountcell = document.createElement("td");
+    amountcell.innerHTML = amount;
 
-    let transactioncell=document.createElement("td");
-    transactioncell.innerHTML=Transaction;
+    let transactioncell = document.createElement("td");
+    transactioncell.innerHTML = Transaction;
 
-    let transactiondatecell=document.createElement("td");
-    transactiondatecell.innerHTML=date;
+    let transactiondatecell = document.createElement("td");
+    transactiondatecell.innerHTML = date;
 
-    let bincell=document.createElement("td");
-    
-    let binImage=document.createElement("img");
-    binImage.src="/src/assests/images/image copy 3.png";
-    binImage.classList.add("w-10","h-10");
-
-    let index=Transactions.length-1;
-    binImage.onclick=()=>deleteRow(row,index);
+    let bincell = document.createElement("td");
+    let binImage = document.createElement("img");
+    binImage.src = "/src/assests/images/image copy 3.png";
+    binImage.classList.add("w-8","h-8","mx-auto","cursor-pointer");
+    let index = Transactions.length - 1;
+    binImage.onclick = () => deleteRow(row, index);
 
     bincell.appendChild(binImage);
 
@@ -235,53 +202,20 @@ function addRow()
     row.appendChild(bincell);
 
     table.appendChild(row);
-    
-    let totalIncome=document.getElementById("income-value").innerText;
-    let totalExpense=document.getElementById("expense-value").innerText;
-    let balanceAmount=document.getElementById("balance-value").innerText;
 
-    if(Transaction == "Income")
-    {
-       if(totalIncome == "0")
-       {
-        document.getElementById("income-value").innerHTML=amount;
-       }
-       else
-       {
-        document.getElementById("income-value").innerHTML=parseInt(totalIncome)+parseInt(amount);
-       }
-       
-       if(balanceAmount == "0")
-       {
-        document.getElementById("balance-value").innerHTML=amount;
-       }
-       else{
-        document.getElementById("balance-value").innerHTML=parseInt(balanceAmount)+parseInt(amount);
-       }
-       
-    }
-    else 
-    {
-      if(totalExpense == "0")
-      {
-        document.getElementById("expense-value").innerHTML=amount;
-      }
-      else{
-        document.getElementById("expense-value").innerHTML=parseInt(totalExpense)+parseInt(amount);
-      }
+    let totalIncome = document.getElementById("income-value").innerText;
+    let totalExpense = document.getElementById("expense-value").innerText;
+    let balanceAmount = document.getElementById("balance-value").innerText;
 
-      if(balanceAmount == "0")
-       {
-        document.getElementById("balance-value").innerHTML=amount;
-       }
-       else{
-        document.getElementById("balance-value").innerHTML=parseInt(balanceAmount)-parseInt(amount);
-       }
-       
+    if (Transaction == "Income") {
+        document.getElementById("income-value").innerHTML = (parseInt(totalIncome) || 0) + parseInt(amount);
+        document.getElementById("balance-value").innerHTML = (parseInt(balanceAmount) || 0) + parseInt(amount);
+    } else {
+        document.getElementById("expense-value").innerHTML = (parseInt(totalExpense) || 0) + parseInt(amount);
+        document.getElementById("balance-value").innerHTML = (parseInt(balanceAmount) || 0) - parseInt(amount);
     }
 }
-
-
 </script>
+
 </body>
 </html>

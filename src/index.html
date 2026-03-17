@@ -7,76 +7,74 @@
   <title>Expense Tracker</title>  
 </head>
 
-<body class="bg-white">
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
 
-<section class="w-full min-h-screen flex flex-col lg:flex-row">
+<section class="min-h-screen flex items-center justify-center px-4">
 
-  
-  <div class="w-full lg:w-[60%] flex flex-col justify-center px-6 md:px-16 py-10">
+  <div class="w-full max-w-5xl bg-gray-900 rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row border border-gray-700">
 
-    <div class="flex items-center gap-3">
-      <h1 class="text-3xl md:text-4xl lg:text-5xl tracking-wide">
-        Expense Tracker
-      </h1>
-      <img src="/src/assests/images/image.png" class="w-16 md:w-20 lg:w-24">
-    </div>
+    
+    <div class="w-full lg:w-1/2 p-8 md:p-12">
 
-    <div class="mt-16 md:mt-24">
-
-      <div class="flex flex-wrap items-center gap-3">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl tracking-wide">Hello</h1>
-
-        <img src="/src/assests/images/image copy 4.png" class="w-16 md:w-20">
-
-        <h1 class="text-3xl md:text-4xl lg:text-5xl tracking-wide">
-          please enter your
+      <div class="flex items-center gap-3 mb-10">
+        <h1 class="text-3xl md:text-4xl font-bold text-white">
+          Expense Tracker
         </h1>
+        <img src="/src/assests/images/image.png" class="w-14 md:w-16">
       </div>
 
-      <h1 class="text-5xl md:text-6xl lg:text-8xl text-blue-500 tracking-wider mt-2">
-        Name
-      </h1>
+      <div class="mb-8">
+        <h2 class="text-2xl md:text-3xl text-gray-300 flex items-center">
+          Hello <img src="/src/assests/images/image copy 4.png" class="w-16 md:w-20">
+        </h2>
+        
+        <p class="text-gray-400 mt-2">
+          Please enter your name to continue
+        </p>
+      </div>
 
-      <div class="mt-6 space-y-3">
-
+      <div class="space-y-5">
         <input
           type="text"
           id="input-name"
-          placeholder="Name Here"
-          class="w-full max-w-xs h-12 border-2 px-5 rounded-md shadow-lg focus:outline-none focus:border-blue-500 text-xl"
+          placeholder="Enter your name"
+          class="w-full h-12 px-4 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 text-lg text-white"
         >
 
-        <br>
-
         <button
-          class="w-32 h-12 bg-blue-500 rounded-md text-white text-lg hover:bg-blue-600 transition" onclick="login()">
+          class="w-full h-12 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-semibold rounded-lg hover:scale-105 transition shadow-lg"
+          onclick="login()">
           Login
         </button>
-
       </div>
 
     </div>
 
-  </div>
+    
+    <div class="w-full lg:w-1/2 bg-gradient-to-br from-purple-600 to-blue-500 flex flex-col justify-center items-center text-center p-10">
 
+      <h2 class="text-white text-3xl md:text-4xl font-semibold mb-6">
+        Welcome Back!
+      </h2>
 
-  
-  <div class="w-full lg:w-[40%] bg-blue-500 flex justify-center lg:justify-end items-start rounded-none lg:rounded-bl-[40%]">
+      <p class="text-blue-100 mb-8 max-w-sm">
+        Track your expenses in a smarter and faster way.
+      </p>
 
-    <button
-      class="w-40 h-14 bg-white text-xl md:text-2xl rounded-md text-blue-500 tracking-wider m-10 lg:mt-20 lg:me-20 shadow-xl hover:border-2 hover:border-white hover:bg-transparent hover:text-white transition" onclick="showMessage()">
+      <button
+        class="px-8 py-3 bg-black text-white rounded-lg shadow-lg hover:bg-transparent hover:border hover:border-white transition"
+        onclick="showMessage()">
+        Click Here
+      </button>
 
-      Click Here
-
-    </button>
+    </div>
 
   </div>
 
 </section>
-<script>
 
-  
-  function login(){
+<script>
+function login(){
 let name=document.getElementById("input-name").value;
 if(name== "")
 {
@@ -87,10 +85,10 @@ else{
   localStorage.setItem("userName",name);
   window.location.href="home.html";
 }
-  }
-  function showMessage(){
-    alert("Please enter name and login");
-  }
+}
+function showMessage(){
+  alert("Please enter name and login");
+}
 </script>
 
 </body>
